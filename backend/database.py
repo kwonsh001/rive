@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 #SQLALCHEMY_DATABASE_URL = "sqlite:////./myapi.db"
 #SQLALCHEMY_DATABASE_URL = "mysql+pymysql://rive:kitri123@rive-db.ctiemqwka664.ap-south-1.rds.amazonaws.com:3306/rive"
 # SQLALCHEMY_DATABASE_URL = "mysql+pymysql://rive:kitri123@rive-db.ctiemqwka664.ap-south-1.rds.amazonaws.com:3306/rive"
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://ksh:0000@localhost:3306/test002"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:3778@localhost:3306/test002"
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL#, connect_args={"check_same_thread": False} 
     # 사용하려는 데이터베이스,SQLite일때 사용
