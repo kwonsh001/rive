@@ -1,0 +1,17 @@
+/* Nav.css */
+
+/* 서비스 선택 드롭다운 이미지 스타일 */
+.service-img {
+  width: 20px; /* 이미지 너비 */
+  height: 20px; /* 이미지 높이 */
+  margin-right: 8px; /* 이미지와 텍스트 사이의 간격 */
+  vertical-align: middle; /* 수직 정렬 */
+}
+
+/* 드롭다운 메뉴의 이미지 스타일 */
+.dropdown-item-img {
+  width: 20px; /* 이미지 너비 */
+  height: 20px; /* 이미지 높이 */
+  margin-right: 8px; /* 이미지와 텍스트 사이의 간격 */
+  vertical-align: middle; /* 수직 정렬 */
+}

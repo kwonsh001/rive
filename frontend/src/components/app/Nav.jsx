@@ -1,71 +1,142 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
+import "../../css/nav.css";
 
-const Nav =()=>{
+const Nav = () => {
+  const { auth, setAuth } = useContext(AuthContext);
 
-	const { auth, setAuth } = useContext(AuthContext);
+  // 서비스 추가
+  const [service, setService] = useState("korea"); // 기본값은 'korea'
+  const handleServiceChange = (service) => {
+    setService(service);
+    if (service === "korea") {
+      window.location.href = "https://test.mangooopeach.store"; // 한국 서비스 도메인으로 리디렉션
+    } else if (service === "english") {
+      window.location.href = "https://test2.mangooopeach.store"; // 영어 서비스 도메인으로 리디렉션
+    }
+  };
 
-	return (
-		<nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top navihi">
-			<div className="container">
+  return (
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark sticky-top navihi">
+      <div className="container">
+        <div className="navbar-collapse collapse justify-content-between" id="navbar-content">
+          <ul className="navbar-nav mr-auto">
+            {/* 메인 화면 */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                <i className="fas fa-home"></i> Home
+              </Link>
+            </li>
 
-				<div className="navbar-collapse collapse justify-content-between" id="navbar-content">
-					<ul className="navbar-nav mr-auto">
+            {/* 게시판 */}
+            <li className="nav-item dropdown">
+              <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                게시판
+              </div>
 
-						{/* 메인 화면 */}
-						<li className="nav-item">
-							<Link className="nav-link" to="/"><i className="fas fa-home"></i> Home</Link>
-						</li>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link className="dropdown-item" to="/bbslist">
+                  글목록
+                </Link>
+                <Link className="dropdown-item" to="/bbswrite">
+                  글추가
+                </Link>
+                <a className="dropdown-item" href="https://test.mangooopeach.store/eng" target="_blank" rel="noopener noreferrer">
+                  test(/eng)
+                </a>
+                <a className="dropdown-item" href="https://test2.mangooopeach.store" target="_blank" rel="noopener noreferrer">
+                  test(test2.)
+                </a>
+                <a className="dropdown-item" href="https://test2.mangooopeach.store/eng" target="_blank" rel="noopener noreferrer">
+                  test
+                </a>
+                <a className="dropdown-item" href="https://mangooopeach.store/eng" target="_blank" rel="noopener noreferrer">
+                  test
+                </a>
+                <a className="dropdown-item" href="https://010510-test3.s3.us-west-1.amazonaws.com/eng/index.html" target="_blank" rel="noopener noreferrer">
+                  test
+                </a>
+              </div>
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            {auth ? (
+              <>
+                {/* 회원 정보 */}
+                <li className="nav-item">
+                  <span className="nav-link">
+                    {" "}
+                    {auth} 님 반갑습니다 <i className="fab fa-ello"></i> &nbsp;{" "}
+                  </span>
+                </li>
 
-						{/* 게시판 */}
-						<li className="nav-item dropdown">
+                {/* 로그아웃 */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/logout">
+                    <i className="fas fa-sign-out-alt"></i> 로그아웃
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                {/* 로그인 */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    로그인
+                  </Link>
+                </li>
 
-							<div className="nav-link dropdown-toggle" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false">게시판</div>
+                {/* 회원가입 */}
+                <li className="nav-item">
+                  <Link className="nav-link" to="/join">
+                    회원가입
+                  </Link>
+                </li>
+              </>
+            )}
+            {/* 서비스 선택 */}
+            <li className="nav-item dropdown">
+              <div className="nav-link dropdown-toggle" id="serviceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {service === "korea" ? (
+                  <span>
+                    <img src="/images/korea.png" alt="Korea" className="service-img" />
+                    Korea
+                  </span>
+                ) : (
+                  <span>
+                    <img src="/images/global.png" alt="Global" className="service-img" />
+                    Global
+                  </span>
+                )}
+              </div>
 
-							<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-								<Link className="dropdown-item" to="/bbslist">글목록</Link>
-								<Link className="dropdown-item" to="/bbswrite">글추가</Link>
-							</div>
-						</li>
-					</ul>
-					<ul className="navbar-nav ml-auto">
-
-						{							
-							(auth) ?
-								<>
-									{/* 회원 정보 */}
-									<li className="nav-item">
-										<span className="nav-link"> {auth} 님 반갑습니다 <i className="fab fa-ello"></i> &nbsp; </span>
-									</li>
-
-									{/* 로그아웃 */}
-									<li className="nav-item">
-										<Link className="nav-link" to="/logout"><i className="fas fa-sign-out-alt"></i> 로그아웃</Link>
-									</li>
-
-								</>
-								:
-								<>
-									{/* 로그인 */}
-									<li className="nav-item">
-										<Link className="nav-link" to="/login">로그인</Link>
-									</li>
-
-									{/* 회원가입 */}
-									<li className="nav-item">
-										<Link className="nav-link" to="/join">회원가입</Link>
-									</li>
-								</>
-						}
-
-					</ul>
-				</div>
-			</div>
-		</nav>
-	);
-}
+              <div className="dropdown-menu" aria-labelledby="serviceDropdown">
+                {/* `service`가 'korea'일 때 Global만 표시 */}
+                {service === "korea" ? (
+                  <button className="dropdown-item" onClick={() => handleServiceChange("english")}>
+                    <img src="/images/global.png" alt="Global" className="dropdown-item-img" />
+                    Global
+                  </button>
+                ) : (
+                  <>
+                    <button className="dropdown-item" onClick={() => handleServiceChange("korea")}>
+                      <img src="/images/korea.png" alt="Korea" className="dropdown-item-img" />
+                      Korea
+                    </button>
+                    <button className="dropdown-item" onClick={() => handleServiceChange("english")}>
+                      <img src="/images/global.png" alt="Global" className="dropdown-item-img" />
+                      Global
+                    </button>
+                  </>
+                )}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default Nav;
