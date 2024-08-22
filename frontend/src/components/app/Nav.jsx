@@ -12,8 +12,8 @@ const Nav = () => {
     setService(service);
     if (service === "korea") {
       window.location.href = "https://test.mangooopeach.store"; // 한국 서비스 도메인으로 리디렉션
-    } else if (service === "english") {
-      window.location.href = "https://test2.mangooopeach.store"; // 영어 서비스 도메인으로 리디렉션
+    } else if (service === "global") {
+      window.location.href = "https://crider.mangooopeach.store/eng"; // 영어 서비스 도메인으로 리디렉션
     }
   };
 
@@ -42,21 +42,6 @@ const Nav = () => {
                 <Link className="dropdown-item" to="/bbswrite">
                   글추가
                 </Link>
-                <a className="dropdown-item" href="https://test.mangooopeach.store/eng" target="_blank" rel="noopener noreferrer">
-                  test(/eng)
-                </a>
-                <a className="dropdown-item" href="https://test2.mangooopeach.store" target="_blank" rel="noopener noreferrer">
-                  test(test2.)
-                </a>
-                <a className="dropdown-item" href="https://test2.mangooopeach.store/eng" target="_blank" rel="noopener noreferrer">
-                  test
-                </a>
-                <a className="dropdown-item" href="https://mangooopeach.store/eng" target="_blank" rel="noopener noreferrer">
-                  test
-                </a>
-                <a className="dropdown-item" href="https://010510-test3.s3.us-west-1.amazonaws.com/eng/index.html" target="_blank" rel="noopener noreferrer">
-                  test
-                </a>
               </div>
             </li>
           </ul>
@@ -113,23 +98,11 @@ const Nav = () => {
 
               <div className="dropdown-menu" aria-labelledby="serviceDropdown">
                 {/* `service`가 'korea'일 때 Global만 표시 */}
-                {service === "korea" ? (
-                  <button className="dropdown-item" onClick={() => handleServiceChange("english")}>
-                    <img src="/images/global.png" alt="Global" className="dropdown-item-img" />
-                    Global
-                  </button>
-                ) : (
-                  <>
-                    <button className="dropdown-item" onClick={() => handleServiceChange("korea")}>
-                      <img src="/images/korea.png" alt="Korea" className="dropdown-item-img" />
-                      Korea
-                    </button>
-                    <button className="dropdown-item" onClick={() => handleServiceChange("english")}>
-                      <img src="/images/global.png" alt="Global" className="dropdown-item-img" />
-                      Global
-                    </button>
-                  </>
-                )}
+
+                <button className="dropdown-item" onClick={() => handleServiceChange("global")}>
+                  <img src="/images/global.png" alt="Korea" className="dropdown-item-img" />
+                  Global
+                </button>
               </div>
             </li>
           </ul>
